@@ -133,24 +133,6 @@ const TabbedDatagrid = props => {
 
     return (
         <Fragment>
-            <Tabs
-                variant="fullWidth"
-                centered
-                indicatorColor="primary"
-                onChange={handleChange}
-            >
-                {tabs.map(choice => (
-                    <Tab
-                        key={choice.id}
-                        label={
-                            totals[choice.name]
-                                ? `${choice.name} (${totals[choice.name]})`
-                                : choice.name
-                        }
-                        value={choice.id}
-                    />
-                ))}
-            </Tabs>
             <Divider />
             {isXSmall ? (
                 <ListContextProvider
@@ -177,7 +159,7 @@ const TabbedDatagrid = props => {
                             value={{ ...listContext, ids: completed }}
                         >
                             <Datagrid {...props} rowClick="edit">
-                                <DateField source="create_at" showTime />
+                                <DateField source="created_at" showTime />
                                 <UserReferenceField />
                                 <RecipeReferenceField />
                                 <DateField source="date" showTime />
@@ -189,7 +171,7 @@ const TabbedDatagrid = props => {
                             value={{ ...listContext, ids: cancelled }}
                         >
                             <Datagrid {...props} rowClick="edit">
-                                <DateField source="create_at" showTime />
+                                <DateField source="created_at" showTime />
                                 <UserReferenceField />
                                 <RecipeReferenceField />
                                 <DateField source="date" showTime />
