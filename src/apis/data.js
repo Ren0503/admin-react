@@ -666,7 +666,7 @@ export default {
             recipe_id : 5,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-08-05'),
-            status : 'completed'
+            status : 'completed',
         },
         {
             id: 2,
@@ -674,7 +674,7 @@ export default {
             recipe_id : 7,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-12-27'),
-            status : 'pending'
+            status : 'pending',
         },
         {
             id: 3,
@@ -682,7 +682,7 @@ export default {
             recipe_id : 9,
             created_at : new Date('2020-02-04'),
             date : new Date('2020-03-06'),
-            status : 'completed'
+            status : 'completed',
         },
         {
             id: 4,
@@ -690,7 +690,7 @@ export default {
             recipe_id : 5,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-10-19'),
-            status : 'cancelled'
+            status : 'cancelled',
         },
         {
             id: 5,
@@ -698,7 +698,7 @@ export default {
             recipe_id : 5,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-11-01'),
-            status : 'cancelled'
+            status : 'cancelled',
         },
         {
             id: 6,
@@ -706,7 +706,7 @@ export default {
             recipe_id : 3,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-04-05'),
-            status : 'completed'
+            status : 'completed',
         },
         {
             id: 7,
@@ -714,7 +714,7 @@ export default {
             recipe_id : 9,
             created_at : new Date('2020-06-04'),
             date : new Date('2020-12-12'),
-            status : 'pending'
+            status : 'pending',
         },
         {
             id: 8,
@@ -722,7 +722,7 @@ export default {
             recipe_id : 9,
             created_at : new Date('2020-11-29'),
             date : new Date('2020-12-12'),
-            status : 'pending'
+            status : 'pending',
         },
         {
             id: 9,
@@ -730,7 +730,7 @@ export default {
             recipe_id : 8,
             created_at : new Date('2020-11-24'),
             date : new Date('2020-12-30'),
-            status : 'pending'
+            status : 'pending',
         },
     ],
     categories : [

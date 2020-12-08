@@ -78,7 +78,7 @@ const RecipeEdit= props => {
                         className={classes.views}
                         validate={requiredValidate}
                     />
-                    <TextField source="status" />
+                    <TextInput source="status" />
                 </FormTab>
                 <FormTab
                     label="Body"

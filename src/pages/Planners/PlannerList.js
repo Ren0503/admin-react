@@ -12,10 +12,11 @@ import {
     SearchInput,
     useGetList,
     useListContext,
+    TextInput,
 } from 'react-admin';
 import { useMediaQuery, Divider, Tabs, Tab } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 
 import UserReferenceField from '../Users/UserReferenceField';
 import MobileGrid from '../../components/Planner/MobileGrid';
@@ -47,10 +48,6 @@ const PlannerFilter = props => (
     </Filter>
 );
 
-const useDatagridStyles = makeStyles({
-    total: { fontWeight: 'bold' },
-});
-
 const tabs = [
     { id: 'pending', name: 'pending' },
     { id: 'completed', name: 'completed' },
@@ -62,19 +59,19 @@ const useGetTotals = (filterValues) => {
     const { total: totalPending } = useGetList(
         'planners',
         { perPage: 1, page: 1 },
-        { field: 'id', Planner: 'ASC' },
+        { field: 'id', order: 'ASC' },
         { ...filterValues, status: 'pending' }
     );
     const { total: totalCompleted } = useGetList(
         'planners',
         { perPage: 1, page: 1 },
-        { field: 'id', Planner: 'ASC' },
+        { field: 'id', order: 'ASC' },
         { ...filterValues, status: 'completed' }
     );
     const { total: totalCancelled } = useGetList(
         'planners',
         { perPage: 1, page: 1 },
-        { field: 'id', Planner: 'ASC' },
+        { field: 'id', order: 'ASC' },
         { ...filterValues, status: 'cancelled' }
     );
 
@@ -88,7 +85,6 @@ const useGetTotals = (filterValues) => {
 const TabbedDatagrid = props => {
     const listContext = useListContext();
     const { ids, filterValues, setFilters, displayedFilters } = listContext;
-    const classes = useDatagridStyles();
     const isXSmall = useMediaQuery(theme =>
         theme.breakpoints.down('xs')
     );
@@ -133,6 +129,24 @@ const TabbedDatagrid = props => {
 
     return (
         <Fragment>
+            <Tabs
+                variant="fullWidth"
+                centered
+                indicatorColor="primary"
+                onChange={handleChange}
+            >
+                {tabs.map(choice => (
+                    <Tab
+                        key={choice.id}
+                        label={
+                            totals[choice.name]
+                                ? `${choice.name} (${totals[choice.name]})`
+                                : choice.name
+                        }
+                        value={choice.id}
+                    />
+                ))}
+            </Tabs>
             <Divider />
             {isXSmall ? (
                 <ListContextProvider
@@ -188,7 +202,7 @@ const PlannerList = props => (
     <List
         {...props}
         filterDefaultValues={{ status: 'pending' }}
-        sort={{ field: 'date', Planner: 'DESC' }}
+        sort={{ field: 'date', order : 'DESC' }}
         perPage={10}
         filters={<PlannerFilter />}
     >

@@ -8,6 +8,7 @@ import {
     SelectInput,
     Toolbar,
     useTranslate,
+    TextInput,
 } from 'react-admin';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -19,17 +20,6 @@ import {
     Link,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-const PlannerTitle= ({ record }) => {
-    const translate = useTranslate();
-    return record ? (
-        <span>
-            {translate('resources.planners.title', {
-                reference: record.reference,
-            })}
-        </span>
-    ) : null;
-};
 
 const UserDetails = ({ record }) => (
     <Box display="flex" flexDirection="column">
@@ -52,7 +42,7 @@ const UserDetails = ({ record }) => (
     </Box>
 );
 
-const RecipeDetails = ({ record }) => {
+const RecipeDetails = ({ record }) => (
     <Box display="flex" flexDirection="column">
         <Typography
             component={RouterLink}
@@ -63,7 +53,7 @@ const RecipeDetails = ({ record }) => {
             {record?.title}
         </Typography>
     </Box>
-}
+);
 
 const useEditStyles = makeStyles({
     root: { alignItems: 'flex-start' },
@@ -148,12 +138,23 @@ const PlannerForm = (props) => {
                                 </Grid>
                             </Grid>
                             <Spacer />
-
-                            <Typography variant="h6" gutterBottom>
-                                {translate('Items')}
-                            </Typography>
-
-
+                            <Grid container spacing={1}>
+                                <Typography variant="h6" gutterBottom>
+                                    {translate(
+                                        'Items'
+                                    )}
+                                </Typography>
+                                <ReferenceField
+                                    source="recipe_id"
+                                    resource="planners"
+                                    reference="recipes"
+                                    basePath="/recipes"
+                                    record={formProps.record}
+                                    link={false}
+                                >
+                                    <RecipeDetails />
+                                </ReferenceField>
+                            </Grid>
                         </CardContent>
                         <Toolbar
                             record={formProps.record}
@@ -174,7 +175,6 @@ const PlannerEdit = props => {
     const classes = useEditStyles();
     return (
         <Edit
-            title={<PlannerTitle />}
             classes={classes}
             {...props}
             component="div"
